@@ -1,0 +1,16 @@
+<tr <%= tag.attributes data: { chip: gpu[:chip], manufacturer: gpu[:manufacturer], price: gpu[:price], filter_target: "filterable" } %>>
+  <td class="chip"><%= gpu[:chip] %></td>
+  <td><%= gpu[:ram] %>GB</td>
+  <td><%= gpu[:clock] %>GHz</td>
+  <td><%= gpu[:condition] %></td>
+  <td><%= number_to_currency(gpu[:price],  precision: 0) %></td>
+  <td class="name">
+    <a href=<%= gpu[:url] %>>
+      Buy Now
+    </a>
+    /
+    <a href=<%= gpu[:url] %>>
+      See Listings
+    </a>
+  </td>
+</tr>

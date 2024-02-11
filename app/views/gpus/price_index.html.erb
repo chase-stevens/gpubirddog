@@ -1,0 +1,65 @@
+<div data-controller="filter">
+  <div id="filters">
+    <fieldset>
+      <legend>Manufacturer</legend>
+      <label>
+        <input
+          type="checkbox"
+          data-manufacturer="NVIDIA"
+          data-action="filter#toggleManufacturerFilter"
+          checked="">
+        NVIDIA
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          data-manufacturer="AMD"
+          data-action="filter#toggleManufacturerFilter"
+          checked="">
+        AMD
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          data-manufacturer="Intel"
+          data-action="filter#toggleManufacturerFilter"
+          checked="">
+        Intel
+      </label>
+    </fieldset>
+    <fieldset class="price">
+      <legend>Price</legend>
+      <input
+        type="number"
+        id="price_min"
+        min="0"
+        data-action="filter#setPriceFloorFilter"
+        placeholder="$">
+      <label for="price_min">min</label>
+      <input
+        type="number"
+        id="price_max"
+        min="0"
+        data-action="filter#setPriceCeilingFilter"
+        placeholder="$">
+      <label for="price_max">max</label>
+    </fieldset>
+  </div>
+  <table id="gpuprices">
+    <thead>
+      <th>Chip</th>
+      <th>RAM</th>
+      <th>Clock</th>
+      <th>Condition</th>
+      <th>Price</th>
+      <th>Link</th>
+    </thead>
+
+    <% @price_gpus.each do |chip_name| %>
+      <% gpu = @gpus.find { |g| g[:chip] == chip_name } %>
+      <% next if gpu[:ram].blank? %>
+      <% next if gpu[:clock].blank? %>
+      <%= render partial: "price_gpu_row", locals: {gpu: gpu} %>
+    <% end %>
+  </table>
+</div>

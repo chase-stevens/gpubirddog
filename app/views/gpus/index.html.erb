@@ -1,0 +1,76 @@
+<div data-controller="filter">
+  <div id="filters">
+    <fieldset>
+      <legend>Condition</legend>
+      <label>
+        <input
+          type="checkbox"
+          data-condition="New"
+          data-action="filter#toggleConditionFilter"
+          checked="">
+        New
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          data-condition="Refurbished"
+          data-action="filter#toggleConditionFilter"
+          checked="">
+        Refurbished
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Chips</legend>
+      <% @chips.each do |chip| %>
+        <label>
+          <input
+            type="checkbox"
+            data-chip="<%= chip %>"
+            data-action="filter#toggleChipFilter"
+            checked="">
+          <%= chip %>
+        </label>
+      <% end %>
+      <label>
+        <input
+          type="checkbox"
+          data-chip="NVIDIA GeForce RTX 4090"
+          data-action="filter#toggleChipFilter"
+          checked="">
+        NVIDIA GeForce RTX 4090
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          data-chip="NVIDIA GeForce RTX 4080"
+          data-action="filter#toggleChipFilter"
+          checked="">
+        NVIDIA GeForce RTX 4080
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          data-chip="NVIDIA GeForce RTX 3060"
+          data-action="filter#toggleChipFilter"
+          checked="">
+        NVIDIA GeForce RTX 3060
+      </label>
+    </fieldset>
+  </div>
+  <table id="gpuprices">
+
+    <thead>
+      <th>Price</th>
+      <th>RAM</th>
+      <th>Condition</th>
+      <th>Chip</th>
+      <th>Link</th>
+    </thead>
+
+    <% @gpus.each do |gpu| %>
+      <% next if gpu[:chip].blank? %>
+      <%= render partial: "gpu_row", locals: {gpu: gpu} %>
+    <% end %>
+  </table>
+</div>

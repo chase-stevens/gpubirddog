@@ -1,0 +1,11 @@
+<tr <%= tag.attributes data: { chip: gpu[:chip], condition: gpu[:condition], price: gpu[:price], filter_target: "filterable" } %>>
+  <td><%= number_to_currency(gpu[:price],  precision: 0) %></td>
+  <td><%= gpu[:ram] %>GB</td>
+  <td><%= gpu[:condition] %></td>
+  <td class="chip"><%= gpu[:chip] %></td>
+  <td class="name">
+    <a href=<%= gpu[:url] %>>
+      <%= gpu[:name] %>
+    </a>
+  </td>
+</tr>
